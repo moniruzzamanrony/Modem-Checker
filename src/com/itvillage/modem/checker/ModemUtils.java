@@ -62,8 +62,7 @@ public class ModemUtils {
 				this.serialPort.notifyOnDataAvailable(true);
 				ret = "connect_sucess";
 			} else {
-				System.out
-						.println("Error: Only serial ports are handled by this example.");
+				System.out.println("Error: Only serial ports are handled by this example.");
 
 				ret = "connect_error";
 				String s1 = "Error connecting to " + portName + ".\r\n";
@@ -378,11 +377,8 @@ public class ModemUtils {
 	}
 
 	public List<String> getActivePorts() {
-		List<String> activePortsList = new ArrayList<>();
-		for (String port : listPorts()) {
-			activePortsList.add(port);
-		}
-		return activePortsList;
+
+		return CommTest.getPorts();
 	}
 
 	public static void wait(int ms) {

@@ -2,7 +2,6 @@ package com.itvillage.modem.checker;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Modem {
    static ModemUtils modemUtils;
@@ -38,7 +37,6 @@ public class Modem {
 
     public static List<String> getActivePortsList() {
        List<String> a=Modem.getActiveModemsPorts();
-       a.remove("COM156");
         System.err.println(a);
         List<String> selectedActivePortsList = new ArrayList<>();
         List<String> activePortsList = new ArrayList<>();
@@ -53,6 +51,7 @@ public class Modem {
                 System.err.println("Inactive Port");
                 Modem.disconnect();
             }
+
         }
 
         System.out.println(activePortsList);

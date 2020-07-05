@@ -10,7 +10,6 @@ import com.itvillage.modem.checker.dto.ModemInfo;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -198,14 +197,6 @@ public class Home extends javax.swing.JFrame {
         );
 
         clickCheck.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/check_now.png"))); // NOI18N
-        clickCheck.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                clickCheckMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                clickCheckMouseReleased(evt);
-            }
-        });
         clickCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clickCheckActionPerformed(evt);
@@ -266,45 +257,9 @@ public class Home extends javax.swing.JFrame {
         checkModem();
     }//GEN-LAST:event_clickCheckActionPerformed
 
-    private void clickCheckMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickCheckMousePressed
-        System.err.println("fdg");
-        ckeckStatus.setText("Checking...");
-        ckeckStatus.setForeground(Color.red);
-        jDialog.setVisible(true);
-    }//GEN-LAST:event_clickCheckMousePressed
 
-    private void clickCheckMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickCheckMouseReleased
-        jDialog.setVisible(false);
-    }//GEN-LAST:event_clickCheckMouseReleased
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Home home= new Home();
@@ -362,6 +317,7 @@ public class Home extends javax.swing.JFrame {
         String contractsStatus = null;
         String smsStatus = null;
         int errorCount =0;
+        System.err.println(ports);
         for (String port : ports) {
             Modem.connect(port);
             modemInfo.setActiveSIM(Modem.sendATCommand("AT+COPS?").replaceAll(",", "")
