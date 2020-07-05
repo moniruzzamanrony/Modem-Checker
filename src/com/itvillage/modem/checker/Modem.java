@@ -36,26 +36,7 @@ public class Modem {
     }
 
     public static List<String> getActivePortsList() {
-       List<String> a=Modem.getActiveModemsPorts();
-        System.err.println(a);
-        List<String> selectedActivePortsList = new ArrayList<>();
-        List<String> activePortsList = new ArrayList<>();
-        for(String port:a) {
-            Modem.connect(port);
-            if(Modem.sendATCommand("AT").replaceAll("\\s+OK\\s+", "").replaceAll("\n", ",").replaceAll("\r", "").replaceAll(",","").equals("OK")) {
-                activePortsList.add(port);
-               // System.err.println(port+"--------------------------------------------------------------------------------"+Modem.sendATCommand("AT+CGSN").replaceAll("\\s+OK\\s+", "").replaceAll("\n", ",").replaceAll("\r", "").replaceAll(",",""));
-                Modem.disconnect();
-            }
-            else {
-                System.err.println("Inactive Port");
-                Modem.disconnect();
-            }
-
-        }
-
-        System.out.println(activePortsList);
-        return activePortsList;
+        return getActiveModemsPorts();
     }
 
 }

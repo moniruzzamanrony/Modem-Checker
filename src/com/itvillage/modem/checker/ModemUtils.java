@@ -72,23 +72,6 @@ public class ModemUtils {
 		return ret;
 	}
 
-	/*
-	 *  @return A list of Ports Like [COM1,COM2]
-	 * */
-	private List<String> listPorts() {
-		List<String> portsList = new ArrayList<String>();
-		Enumeration<CommPortIdentifier> portEnum = CommPortIdentifier.getPortIdentifiers();
-
-		while (portEnum.hasMoreElements()) {
-			CommPortIdentifier portIdentifier = (CommPortIdentifier) portEnum
-					.nextElement();
-			if (getPortTypeName(portIdentifier.getPortType()) == "Serial") {
-				System.out.println((getPortTypeName(portIdentifier.getPortType()))+"----------"+portIdentifier.getName());
-				portsList.add(portIdentifier.getName());
-			}
-		}
-		return portsList;
-	}
 
 	public String disconnect() {
 		String res = "Disconnect Failed";
@@ -107,35 +90,6 @@ public class ModemUtils {
 		return res;
 	}
 
-
-
-
-
-//		String ret = "disconnect_fail";
-//		if (this.serialPort != null) {
-//			try {
-//				this.outputStream.flush();
-//				this.in1.close();
-//				this.outputStream.close();
-//
-//			} catch (IOException localIOException) {
-//			}
-//			String s1 = "Disconnecting port " + this.port_name + ".\r\n\r\n";
-//			printValue(s1);
-//
-//			this.serialPort.close();
-//			this.serialPort = null;
-//			this.in1 = null;
-//			this.outputStream=null;
-//			ret = "disconnect_success";
-//		} else {
-//			String s1 = "No port is connected.\r\n\r\n";
-//			printValue(s1);
-//			ret = "disconnect_port_not_selected";
-//		}
-//		responseAdd = "";
-//		return ret;
-//	}
 
 	static String getPortTypeName(int portType) {
 		switch (portType) {

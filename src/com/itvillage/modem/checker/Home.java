@@ -11,9 +11,12 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingWorker;
 
 /**
  *
@@ -32,6 +35,8 @@ public class Home extends javax.swing.JFrame {
         jDialog.setSize(211, 194);
         jDialog.setLocationRelativeTo(null);
         jDialog.setUndecorated(true);
+        waitMgsIcon.setVisible(false);
+       
     }
 
     /**
@@ -60,17 +65,21 @@ public class Home extends javax.swing.JFrame {
         contractText = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         ussdText = new javax.swing.JLabel();
-        clickCheck = new javax.swing.JButton();
-        ckeckStatus = new javax.swing.JLabel();
+        waittingIcon = new javax.swing.JButton();
+        log = new javax.swing.JLabel();
+        processingLabel = new javax.swing.JLabel();
+        waitMgsIcon = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 255)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         statusPanel.setBackground(new java.awt.Color(204, 204, 255));
-        statusPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        statusPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 0, 153), 3));
 
         statusText.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
         statusText.setForeground(new java.awt.Color(51, 153, 0));
@@ -132,7 +141,7 @@ public class Home extends javax.swing.JFrame {
                         .addGroup(statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(statusPanelLayout.createSequentialGroup()
                                 .addComponent(contractText, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 42, Short.MAX_VALUE))
+                                .addGap(0, 51, Short.MAX_VALUE))
                             .addComponent(smsText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(statusPanelLayout.createSequentialGroup()
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,41 +205,34 @@ public class Home extends javax.swing.JFrame {
                 .addGap(40, 40, 40))
         );
 
-        clickCheck.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/check_now.png"))); // NOI18N
-        clickCheck.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.add(statusPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 500, 280));
+
+        waittingIcon.setBackground(new java.awt.Color(204, 204, 255));
+        waittingIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/research.png"))); // NOI18N
+        waittingIcon.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        waittingIcon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clickCheckActionPerformed(evt);
+                waittingIconActionPerformed(evt);
             }
         });
+        jPanel1.add(waittingIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 34, 156, 153));
 
-        ckeckStatus.setBackground(new java.awt.Color(102, 102, 0));
-        ckeckStatus.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
-        ckeckStatus.setForeground(new java.awt.Color(102, 102, 0));
-        ckeckStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ckeckStatus.setText("Check now !");
+        log.setBackground(new java.awt.Color(102, 102, 0));
+        log.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
+        log.setForeground(new java.awt.Color(204, 0, 51));
+        log.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(log, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 228, 465, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ckeckStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(164, Short.MAX_VALUE)
-                .addComponent(clickCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(169, 169, 169))
-            .addComponent(statusPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(clickCheck)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ckeckStatus)
-                .addGap(18, 18, 18)
-                .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        processingLabel.setBackground(new java.awt.Color(102, 102, 0));
+        processingLabel.setFont(new java.awt.Font("Calibri Light", 1, 36)); // NOI18N
+        processingLabel.setForeground(new java.awt.Color(102, 102, 0));
+        processingLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        processingLabel.setText("Check Now");
+        jPanel1.add(processingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 193, 465, 29));
+
+        waitMgsIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        waitMgsIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/waiting.png"))); // NOI18N
+        jPanel1.add(waitMgsIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 150, 140));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -253,9 +255,44 @@ public class Home extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void clickCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickCheckActionPerformed
-        checkModem();
-    }//GEN-LAST:event_clickCheckActionPerformed
+    private void waittingIconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_waittingIconActionPerformed
+                
+        statusPanel.setBackground(new Color(204,204,255));
+        deviceModelText.setText("");
+        manufacturerText.setText("");
+        ussdText.setText("");
+        simText.setText("");
+        smsText.setText("");
+        portText.setText("");
+        contractText.setText("");
+        
+        
+        SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+                    @Override
+                    protected Void doInBackground() throws Exception {
+                        waittingIcon.setEnabled(false);
+                        waittingIcon.setVisible(false);
+                        waitMgsIcon.setVisible(true);
+                        processingLabel.setText("Processing....");
+                        checkModem();
+                        return null;
+                    }
+
+                    @Override
+                    protected void done() {
+                        System.err.println("------------------------- Process Done-------------------------");
+                        waittingIcon.setEnabled(true);
+                        processingLabel.setText("Result");
+                        waittingIcon.setVisible(true);  
+                        waitMgsIcon.setVisible(false);
+                        
+                    }
+
+                };
+                worker.execute();
+
+       
+    }//GEN-LAST:event_waittingIconActionPerformed
 
 
     public static void main(String args[]) {
@@ -266,14 +303,13 @@ public class Home extends javax.swing.JFrame {
                 home.setVisible(true);
                 Image icon = Toolkit.getDefaultToolkit().getImage("icon.png");    
                 home.setIconImage(icon); 
-                home.setTitle("Modem Chacker");
+                home.setTitle("Modem Checker");
+                home.setBackground(Color.white);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel ckeckStatus;
-    private javax.swing.JButton clickCheck;
     private javax.swing.JLabel contractText;
     private javax.swing.JLabel deviceModelText;
     private javax.swing.JLabel jLabel10;
@@ -284,29 +320,35 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel log;
     private javax.swing.JLabel manufacturerText;
     private javax.swing.JLabel portText;
+    private javax.swing.JLabel processingLabel;
     private javax.swing.JLabel simText;
     private javax.swing.JLabel smsText;
     private javax.swing.JPanel statusPanel;
     private javax.swing.JLabel statusText;
     private javax.swing.JLabel ussdText;
+    private javax.swing.JLabel waitMgsIcon;
+    private javax.swing.JButton waittingIcon;
     // End of variables declaration//GEN-END:variables
 
     private void checkModem() {
-        ckeckStatus.setText("Please Wait...");
-        ckeckStatus.setForeground(Color.red);
-        getSIMOperatorInfo();
+        log.setText("Please Wait...");
+        log.setForeground(Color.red);
+        getActivePorts();
 
     }
 
-    private void getSIMOperatorInfo() {
-        if (Modem.getActivePortsList().isEmpty()) {
+    private void getActivePorts() {
+        log.setText("Modem Searching...");
+        List<String> ports = Modem.getActivePortsList();
+        if (ports.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Modem Not Found", "Failure", JOptionPane.ERROR_MESSAGE);
 
         } else {
 
-            getModemInfo(Modem.getActivePortsList());
+            getModemInfo(ports);
 
         }
     }
@@ -319,18 +361,25 @@ public class Home extends javax.swing.JFrame {
         int errorCount =0;
         System.err.println(ports);
         for (String port : ports) {
+            log.setText(port+" is connecting...");
             Modem.connect(port);
+            log.setText("Searching active SIM...");
             modemInfo.setActiveSIM(Modem.sendATCommand("AT+COPS?").replaceAll(",", "")
                     .replaceAll("OK", "").replaceAll("COPS:", "").replaceAll("\"", "").replaceAll("\\d", "").replaceAll("\\W", ""));
+            
             modemInfo.setUsedPort(port);
+            log.setText("Searching Device Model...");
             modemInfo.setDeviceModel(Modem.sendATCommand("AT+CGMM").split(",")[1]);
+            log.setText("Searching Manufacturer Name...");
             modemInfo.setManufacturer(Modem.sendATCommand("AT+CGMI").split(",")[1]);
+            log.setText("Finding SIM Name...");
             String simName = Modem.sendATCommand("AT+COPS?").replaceAll(",", "")
                     .replaceAll("OK", "").replaceAll("COPS:", "").replaceAll("\"", "").replaceAll("\\d", "").replaceAll("\\W", "");
             modemInfo.setActiveSIM(simName);
             wait(1000);
             String[] values;
             String value;
+            log.setText("Testing USSD Dialer...");
             switch (simName.toLowerCase()) {
                 case "banglalink":
                     value = Modem.dialUSSDCode("AT+CUSD=1,\"*124#\",15");
@@ -436,15 +485,16 @@ public class Home extends javax.swing.JFrame {
 
             }
             modemInfo.setCheckUssd(ussdStatus);
-
+            log.setText("Testing Contracts List...");
             if (Modem.sendATCommand("AT+CPBR=1,99").contains("OK")) {
                 contractsStatus = "Supported";
             } else {
                 contractsStatus = "Not Supported";
                 errorCount++;
             }
+            
             modemInfo.setCheckContracts(contractsStatus);
-
+            log.setText("Testing SMS Finder...");
             Modem.sendATCommand("AT+CMGF=1");
             wait(500);
             Modem.sendATCommand("AT+CMGF=?");
@@ -476,8 +526,9 @@ public class Home extends javax.swing.JFrame {
             ussdText.setText(modemInfo.getCheckUssd());
             ussdText.setForeground(Color.green);
             statusPanel.setBackground(new Color(204,255,204));          
-            ckeckStatus.setText("Modem supported");
-            ckeckStatus.setForeground(Color.green);
+            log.setText("Modem supported");
+            log.setForeground(Color.green);
+            log.setText("Modem Supported");
         }
         else
         {
@@ -496,8 +547,8 @@ public class Home extends javax.swing.JFrame {
             ussdText.setText("Not Supported");
             ussdText.setForeground(Color.red);
             statusPanel.setBackground(new Color(255,204,204));
-            ckeckStatus.setText("Modem not supported");
-            ckeckStatus.setForeground(Color.red);
+            log.setText("Modem is\'t supported");
+            log.setForeground(Color.red);
         }
     }
 
